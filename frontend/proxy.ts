@@ -10,12 +10,14 @@ export default withAuth(
       authorized: ({ token, req }) => {
         const { pathname } = req.nextUrl;
         
-        // Public routes
-        if (pathname === "/login" || pathname === "/signup") {
+        // Public routes that don't require authentication
+        const publicRoutes = ["/", "/signin", "/signup", "/how-it-works"];
+        
+        if (publicRoutes.includes(pathname)) {
           return true;
         }
         
-        // Protected routes require token
+        // All other routes require authentication
         return !!token;
       },
     },
