@@ -213,6 +213,8 @@ Your support motivates further development and additional Bangladeshi food class
 DeshiPlate AI is an intelligent food-recognition and nutrition-guidance system built specifically for **Bangladeshi cuisine**.  
 It combines a **NextViT-based image classifier**, a **Next.js web app**, and an **LLM-powered nutrition engine** to help users understand their meals, track macros, and receive personalized dietary recommendations.
 
+🔗 **Live Site:** [deshiplateai.vercel.app](https://deshiplateai.vercel.app)
+
 ---
 
 ## 🌟 **Key Features**
