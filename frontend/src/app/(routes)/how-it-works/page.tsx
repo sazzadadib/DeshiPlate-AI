@@ -9,16 +9,16 @@ import Link from 'next/link';
 
 export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       {/* Hero Section */}
       <div className="pt-24 pb-12 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center space-x-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-100 to-amber-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-sm">
             <Sparkles className="w-4 h-4" />
             <span>Complete Guide</span>
           </div>
           <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-6">
-            How <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">Smart Dietitian</span> Works
+            How <span className="bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 bg-clip-text text-transparent">DeshiPlate AI</span> Works
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Your complete guide to personalized nutrition tracking with AI
@@ -33,7 +33,7 @@ export default function HowItWorksPage() {
           {/* Step 1: Sign Up */}
           <div className="mb-16">
             <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-              <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-8 text-white">
+              <div className="bg-gradient-to-r from-orange-600 to-amber-600 p-8 text-white">
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
                     <UserPlus className="w-8 h-8" />
@@ -43,7 +43,7 @@ export default function HowItWorksPage() {
                     <h2 className="text-3xl font-bold">Create Your Profile</h2>
                   </div>
                 </div>
-                <p className="text-green-50 text-lg">
+                <p className="text-orange-50 text-lg">
                   Tell us about yourself so we can personalize your nutrition journey
                 </p>
               </div>
@@ -52,9 +52,9 @@ export default function HowItWorksPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">What Information You Provide</h3>
                 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  <div className="bg-green-50 rounded-xl p-6 border-2 border-green-200">
+                  <div className="bg-orange-50 rounded-xl p-6 border-2 border-orange-200">
                     <div className="flex items-start space-x-4">
-                      <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
                         <UserPlus className="w-5 h-5 text-white" />
                       </div>
                       <div>
@@ -86,9 +86,9 @@ export default function HowItWorksPage() {
                   </div>
                 </div>
 
-                <div className="bg-purple-50 rounded-xl p-6 border-2 border-purple-200 mb-6">
+                <div className="bg-amber-50 rounded-xl p-6 border-2 border-amber-200 mb-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 bg-amber-600 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Stethoscope className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1">
@@ -105,9 +105,9 @@ export default function HowItWorksPage() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl p-6 border-2 border-green-300">
+                <div className="bg-gradient-to-r from-orange-100 to-amber-100 rounded-xl p-6 border-2 border-orange-300">
                   <div className="flex items-center space-x-3 mb-3">
-                    <Shield className="w-6 h-6 text-green-700" />
+                    <Shield className="w-6 h-6 text-orange-700" />
                     <h4 className="font-bold text-gray-900">Privacy First</h4>
                   </div>
                   <p className="text-gray-700 text-sm">
@@ -375,7 +375,7 @@ export default function HowItWorksPage() {
           {/* Step 5: Make Decision */}
           <div className="mb-16">
             <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-              <div className="bg-gradient-to-r from-teal-600 to-green-600 p-8 text-white">
+              <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-8 text-white">
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
                     <CheckCircle className="w-8 h-8" />
@@ -385,7 +385,7 @@ export default function HowItWorksPage() {
                     <h2 className="text-3xl font-bold">Make Your Decision</h2>
                   </div>
                 </div>
-                <p className="text-teal-50 text-lg">
+                <p className="text-green-50 text-lg">
                   Choose to eat or skip the food based on AI recommendations
                 </p>
               </div>
@@ -557,17 +557,17 @@ export default function HowItWorksPage() {
             <div className="text-center mb-10">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Why This System Works</h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Smart Dietitian combines multiple AI technologies to give you the most personalized nutrition experience
+                DeshiPlate AI combines multiple AI technologies to give you the most personalized nutrition experience
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl p-8 text-white shadow-xl">
+              <div className="bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl p-8 text-white shadow-xl">
                 <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4">
                   <Brain className="w-7 h-7" />
                 </div>
                 <h3 className="text-2xl font-bold mb-3">Dual AI System</h3>
-                <p className="text-green-50">
+                <p className="text-orange-50">
                   One AI calculates your personal targets, another identifies food and provides recommendations
                 </p>
               </div>
@@ -602,7 +602,7 @@ export default function HowItWorksPage() {
                   <Zap className="w-4 h-4" />
                   <span>Powered by Advanced AI</span>
                 </div>
-                <h2 className="text-4xl font-bold mb-4">The Technology Behind Smart Dietitian</h2>
+                <h2 className="text-4xl font-bold mb-4">The Technology Behind DeshiPlate AI</h2>
                 <p className="text-xl text-gray-300 max-w-2xl mx-auto">
                   State-of-the-art machine learning models working together for your health
                 </p>
@@ -685,7 +685,7 @@ export default function HowItWorksPage() {
             <div className="text-center mb-10">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Everything you need to know about using Smart Dietitian
+                Everything you need to know about using DeshiPlate AI
               </p>
             </div>
 
@@ -735,18 +735,18 @@ export default function HowItWorksPage() {
           </div>
 
           {/* CTA Section */}
-          <div className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-3xl p-12 text-center shadow-2xl">
+          <div className="bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 rounded-3xl p-12 text-center shadow-2xl">
             <h2 className="text-4xl font-bold text-white mb-4">
               Ready to Start Your Health Journey?
             </h2>
-            <p className="text-xl text-green-50 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-orange-50 mb-8 max-w-2xl mx-auto">
               Sign up now and let AI guide you toward better nutrition choices every day
             </p>
-            <Link href="/classifier" className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-green-600 font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all">
-              <span>Try Smart Dietitian Now</span>
+            <Link href="/classifier" className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-orange-600 font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all">
+              <span>Try DeshiPlate AI Now</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <p className="text-green-100 text-sm mt-4">
+            <p className="text-orange-100 text-sm mt-4">
               No credit card required • Free forever • Get started in 2 minutes
             </p>
           </div>

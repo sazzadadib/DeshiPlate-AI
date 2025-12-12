@@ -31,25 +31,32 @@ export default function Navbar() {
       className={`fixed top-0 left-0 w-full text-gray-900 shadow-lg transition-all duration-300 z-50 ${
         scrolled
           ? 'bg-white/95 backdrop-blur-xl border-b border-gray-200'
-          : 'bg-white/80 backdrop-blur-md'
+          : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link
-              href="/"
-              className="text-xl sm:text-2xl font-bold tracking-tight hover:opacity-80 transition-all duration-300 flex items-center gap-2 group"
-            >
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-600 to-amber-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                <ChefHat className="w-6 h-6 text-white" />
-              </div>
-              <span className="hidden sm:inline bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
-                DeshiPlate AI
-              </span>
-            </Link>
-          </div>
+    <div className="flex-shrink-0">
+      <Link
+        href="/"
+        className="text-xl sm:text-2xl font-bold tracking-tight hover:opacity-80 transition-all duration-300 flex items-center gap-2 group"
+      >
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg overflow-hidden">
+          <Image
+            src="/plate-logo.png"
+            alt="DeshiPlate Logo"
+            width={50}
+            height={50}
+            className="object-contain"
+          />
+        </div>
+
+        <span className="hidden sm:inline bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
+          DeshiPlate AI
+        </span>
+      </Link>
+    </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1">

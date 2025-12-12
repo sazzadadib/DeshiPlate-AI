@@ -4,7 +4,16 @@ import { Suspense, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Mail, Lock, ChefHat, AlertCircle, CheckCircle, Loader2, Sparkles } from 'lucide-react';
+import Image from "next/image";
+import {
+  Mail,
+  Lock,
+  ChefHat,
+  AlertCircle,
+  CheckCircle,
+  Loader2,
+  Sparkles,
+} from "lucide-react";
 
 function SigninForm() {
   const router = useRouter();
@@ -56,21 +65,31 @@ function SigninForm() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-amber-600 rounded-2xl flex items-center justify-center shadow-xl">
-              <ChefHat className="w-8 h-8 text-white" />
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-xl">
+              <Image
+                src="/plate-logo.png"
+                alt="DeshiPlate Logo"
+                width={64}
+                height={64}
+                className="object-contain"
+              />
             </div>
             <div className="text-left">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
                 DeshiPlate AI
               </h1>
-              <p className="text-sm text-gray-600 font-medium">Smart Bengali Nutrition</p>
+              <p className="text-sm text-gray-600 font-medium">
+                Smart Bengali Nutrition
+              </p>
             </div>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
             Welcome Back
           </h2>
           <p className="text-lg text-gray-600">
-            {loading ? 'Signing you in...' : 'Log in to continue your healthy journey'}
+            {loading
+              ? "Signing you in..."
+              : "Log in to continue your healthy journey"}
           </p>
         </div>
 
@@ -79,7 +98,9 @@ function SigninForm() {
           {registered && (
             <div className="mb-6 bg-green-50 border-2 border-green-200 text-green-700 px-5 py-4 rounded-xl flex items-center gap-3">
               <CheckCircle className="w-5 h-5 flex-shrink-0" />
-              <span className="font-medium">Account created successfully! Please log in.</span>
+              <span className="font-medium">
+                Account created successfully! Please log in.
+              </span>
             </div>
           )}
 
@@ -92,7 +113,10 @@ function SigninForm() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2"
+              >
                 <Mail className="w-4 h-4 text-orange-600" />
                 Email Address *
               </label>
@@ -110,7 +134,10 @@ function SigninForm() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2"
+              >
                 <Lock className="w-4 h-4 text-orange-600" />
                 Password *
               </label>
@@ -148,8 +175,11 @@ function SigninForm() {
         </div>
 
         <p className="text-center text-gray-600 mt-6">
-          Don't have an account?{' '}
-          <Link href="/signup" className="text-orange-600 hover:text-orange-700 font-semibold">
+          Don't have an account?{" "}
+          <Link
+            href="/signup"
+            className="text-orange-600 hover:text-orange-700 font-semibold"
+          >
             Sign Up
           </Link>
         </p>
@@ -160,14 +190,16 @@ function SigninForm() {
 
 export default function SigninPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 flex items-center justify-center">
-        <div className="flex items-center gap-2 text-gray-600">
-          <Loader2 className="w-5 h-5 animate-spin" />
-          <span>Loading...</span>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 flex items-center justify-center">
+          <div className="flex items-center gap-2 text-gray-600">
+            <Loader2 className="w-5 h-5 animate-spin" />
+            <span>Loading...</span>
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <SigninForm />
     </Suspense>
   );

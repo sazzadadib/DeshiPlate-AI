@@ -7,8 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import {
   User, Activity, TrendingUp, Calendar, Flame, Drumstick, Wheat, Droplet,
   Clock, CheckCircle, AlertCircle, Loader2, AlertTriangle, Trophy, Target,
-  Info, ChefHat, Heart, PieChart, Award,
-  Utensils
+  Info, ChefHat, Heart, PieChart, Utensils
 } from 'lucide-react';
 
 interface UserData {

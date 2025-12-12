@@ -8,8 +8,8 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Smart Dietitian - AI Food Analyzer",
-  description: "Analyze your meals with AI-powered nutrition insights and personalized recommendations.",
+  title: "DeshiPlate-AI",
+  description: "Bangladeshi Food Recognition & Nutrition Assistant",
 };
 
 export default function RootLayout({

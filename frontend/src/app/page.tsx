@@ -1,6 +1,7 @@
 // src/app/page.tsx
 'use client';
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Sparkles, TrendingUp, Shield, Zap, Camera, Brain, Heart, ArrowRight, Target, Activity, Apple, BarChart3, User, CheckCircle, ChefHat, Utensils, Award, Globe, Search } from 'lucide-react';
 
 export default function HomePage() {
@@ -69,14 +70,14 @@ export default function HomePage() {
               Your intelligent companion for Bangladeshi food recognition and personalized nutrition. Upload any deshi dish photo and get instant AI-powered nutritional insights tailored to your health profile.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="group px-8 py-4 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-semibold rounded-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center space-x-2">
+              <Link href="/classifier" className="group px-8 py-4 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-semibold rounded-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center space-x-2">
                 <Camera className="w-5 h-5" />
                 <span>Analyze Your Food</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="px-8 py-4 bg-white text-gray-700 font-semibold rounded-xl hover:shadow-lg transition-all border-2 border-gray-200">
+              </Link>
+              <Link href="/how-it-works" className="px-8 py-4 bg-white text-gray-700 font-semibold rounded-xl hover:shadow-lg transition-all border-2 border-gray-200">
                 Learn More
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -328,11 +329,11 @@ export default function HomePage() {
               <p className="text-xl text-orange-50 mb-8 max-w-2xl mx-auto">
                 Join DeshiPlate AI today and discover how our intelligent system helps you make better food choices every day
               </p>
-              <button className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-orange-600 font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all">
+              <Link href="/classifier" className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-orange-600 font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all">
                 <Camera className="w-5 h-5" />
                 <span>Start Analyzing Now</span>
                 <ArrowRight className="w-5 h-5" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

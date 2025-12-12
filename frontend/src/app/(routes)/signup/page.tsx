@@ -3,11 +3,23 @@
 import { useState, ChangeEvent, FormEvent, MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  User, Mail, Lock, Calendar, Ruler, Weight, 
-  Users, Heart, Sparkles, ArrowRight, CheckCircle,
-  AlertCircle, Loader2, ChefHat
-} from 'lucide-react';
+  User,
+  Mail,
+  Lock,
+  Calendar,
+  Ruler,
+  Weight,
+  Users,
+  Heart,
+  Sparkles,
+  ArrowRight,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
+  ChefHat,
+} from "lucide-react";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -25,7 +37,9 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -243,7 +257,9 @@ export default function SignupPage() {
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-orange-600" />
-                <span>Custom daily goals for calories, protein, carbs & fat</span>
+                <span>
+                  Custom daily goals for calories, protein, carbs & fat
+                </span>
               </li>
             </ul>
           </div>
@@ -258,24 +274,31 @@ export default function SignupPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-amber-600 rounded-2xl flex items-center justify-center shadow-xl">
-              <ChefHat className="w-8 h-8 text-white" />
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-xl">
+              <Image
+                src="/plate-logo.png"
+                alt="DeshiPlate Logo"
+                width={64}
+                height={64}
+                className="object-contain"
+              />
             </div>
             <div className="text-left">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
                 DeshiPlate AI
               </h1>
-              <p className="text-sm text-gray-600 font-medium">Smart Bengali Nutrition</p>
+              <p className="text-sm text-gray-600 font-medium">
+                Smart Bengali Nutrition
+              </p>
             </div>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
             Create Your Account
           </h2>
           <p className="text-lg text-gray-600">
-            {loading ? 
-              'Calculating your personalized nutrition...' : 
-              'Join DeshiPlate AI and start your healthy journey'
-            }
+            {loading
+              ? "Calculating your personalized nutrition..."
+              : "Join DeshiPlate AI and start your healthy journey"}
           </p>
         </div>
 
@@ -288,20 +311,26 @@ export default function SignupPage() {
                   <div
                     className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg transition-all shadow-lg ${
                       step >= s
-                        ? 'bg-gradient-to-br from-orange-600 to-amber-600 text-white scale-110'
-                        : 'bg-white text-gray-400 border-2 border-gray-200'
+                        ? "bg-gradient-to-br from-orange-600 to-amber-600 text-white scale-110"
+                        : "bg-white text-gray-400 border-2 border-gray-200"
                     }`}
                   >
                     {step > s ? <CheckCircle className="w-6 h-6" /> : s}
                   </div>
-                  <p className={`text-xs font-semibold mt-2 ${step >= s ? 'text-orange-600' : 'text-gray-400'}`}>
-                    {s === 1 ? 'Account' : s === 2 ? 'Physical' : 'Health'}
+                  <p
+                    className={`text-xs font-semibold mt-2 ${
+                      step >= s ? "text-orange-600" : "text-gray-400"
+                    }`}
+                  >
+                    {s === 1 ? "Account" : s === 2 ? "Physical" : "Health"}
                   </p>
                 </div>
                 {s < 3 && (
                   <div
                     className={`flex-1 h-1 mx-2 rounded-full transition-all ${
-                      step > s ? 'bg-gradient-to-r from-orange-600 to-amber-600' : 'bg-gray-200'
+                      step > s
+                        ? "bg-gradient-to-r from-orange-600 to-amber-600"
+                        : "bg-gray-200"
                     }`}
                   ></div>
                 )}
@@ -318,7 +347,7 @@ export default function SignupPage() {
               <span className="font-medium">{error}</span>
             </div>
           )}
-          
+
           <form onSubmit={handleSubmit}>
             {step === 1 && renderStep1()}
             {step === 2 && renderStep2()}
@@ -335,7 +364,7 @@ export default function SignupPage() {
                   Back
                 </button>
               )}
-              
+
               {step < 3 ? (
                 <button
                   type="button"
@@ -370,8 +399,11 @@ export default function SignupPage() {
         </div>
 
         <p className="text-center text-gray-600 mt-6">
-          Already have an account?{' '}
-          <Link href="/signin" className="text-orange-600 hover:text-orange-700 font-semibold">
+          Already have an account?{" "}
+          <Link
+            href="/signin"
+            className="text-orange-600 hover:text-orange-700 font-semibold"
+          >
             Sign In
           </Link>
         </p>

@@ -6,8 +6,8 @@ import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { 
   Loader2, ThumbsUp, ThumbsDown, TrendingUp, AlertTriangle,
-  CheckCircle, XCircle, ArrowLeft, Utensils, Activity, Info,
-  Flame, Drumstick, Wheat, Droplet, PieChart, ChefHat, Target
+  CheckCircle, XCircle, UtensilsCrossed, Activity, Info,
+  Flame, Drumstick, Wheat, Droplet, PieChart, Target
 } from 'lucide-react';
 
 interface AnalysisData {
@@ -227,7 +227,7 @@ function FoodAnalysisContent() {
         <div className="bg-white rounded-3xl shadow-xl border-t-4 border-orange-500 p-8 mb-6">
           <div className="flex items-center gap-4 mb-6">
             <div className="bg-gradient-to-br from-orange-100 to-amber-100 p-4 rounded-2xl shadow-md">
-              <ChefHat className="w-10 h-10 text-orange-600" />
+              <UtensilsCrossed className="w-10 h-10 text-orange-600" />
             </div>
             <div>
               <h1 className="text-4xl font-bold text-gray-900">{analysisData.foodName}</h1>
