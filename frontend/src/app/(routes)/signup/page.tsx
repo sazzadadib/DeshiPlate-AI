@@ -1,4 +1,4 @@
-// src/(routes)/signu/page.tsx
+// src/(routes)/signup/page.tsx
 "use client";
 import { useState, ChangeEvent, FormEvent, MouseEvent } from "react";
 import { useRouter } from "next/navigation";
@@ -66,7 +66,6 @@ export default function SignupPage() {
         throw new Error(data.error || "Something went wrong");
       }
 
-      // Redirect to signin page after successful signup
       router.push("/signin?registered=true");
     } catch (err) {
       if (err instanceof Error) {
@@ -79,20 +78,38 @@ export default function SignupPage() {
     }
   };
 
+  const validateStep = (stepNumber: number): boolean => {
+    if (stepNumber === 1) {
+      return !!(formData.name && formData.email && formData.password && formData.password.length >= 6);
+    }
+    if (stepNumber === 2) {
+      return !!(formData.age && formData.gender && formData.height && formData.weight);
+    }
+    return true;
+  };
+
   const nextStep = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault();
+    
+    if (!validateStep(step)) {
+      setError("Please fill in all required fields before continuing");
+      return;
+    }
+    
+    setError("");
     if (step < 3) setStep(step + 1);
   };
 
   const prevStep = () => {
+    setError("");
     if (step > 1) setStep(step - 1);
   };
 
   const renderStep1 = () => (
-    <div className="space-y-5 animate-fadeIn">
+    <div className="space-y-4 sm:space-y-5 animate-fadeIn">
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-          <User className="w-4 h-4 text-orange-600" />
+        <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2 flex items-center gap-1.5 sm:gap-2">
+          <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600" />
           Full Name *
         </label>
         <input
@@ -102,13 +119,13 @@ export default function SignupPage() {
           onChange={handleChange}
           required
           disabled={loading}
-          className="w-full px-5 py-3.5 border-2 border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="w-full px-4 sm:px-5 py-2.5 sm:py-3.5 border-2 border-gray-200 text-gray-900 rounded-lg sm:rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed text-sm sm:text-base"
           placeholder="Enter your full name"
         />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-          <Mail className="w-4 h-4 text-orange-600" />
+        <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2 flex items-center gap-1.5 sm:gap-2">
+          <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600" />
           Email Address *
         </label>
         <input
@@ -118,13 +135,13 @@ export default function SignupPage() {
           onChange={handleChange}
           required
           disabled={loading}
-          className="w-full px-5 py-3.5 border-2 border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="w-full px-4 sm:px-5 py-2.5 sm:py-3.5 border-2 border-gray-200 text-gray-900 rounded-lg sm:rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed text-sm sm:text-base"
           placeholder="your.email@example.com"
         />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-          <Lock className="w-4 h-4 text-orange-600" />
+        <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2 flex items-center gap-1.5 sm:gap-2">
+          <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600" />
           Password *
         </label>
         <input
@@ -135,7 +152,7 @@ export default function SignupPage() {
           required
           minLength={6}
           disabled={loading}
-          className="w-full px-5 py-3.5 border-2 border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="w-full px-4 sm:px-5 py-2.5 sm:py-3.5 border-2 border-gray-200 text-gray-900 rounded-lg sm:rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed text-sm sm:text-base"
           placeholder="Minimum 6 characters"
         />
       </div>
@@ -143,11 +160,11 @@ export default function SignupPage() {
   );
 
   const renderStep2 = () => (
-    <div className="space-y-5 animate-fadeIn">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div className="space-y-4 sm:space-y-5 animate-fadeIn">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-orange-600" />
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2 flex items-center gap-1.5 sm:gap-2">
+            <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600" />
             Age *
           </label>
           <input
@@ -159,13 +176,13 @@ export default function SignupPage() {
             min="1"
             max="120"
             disabled={loading}
-            className="w-full px-5 py-3.5 border-2 border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+            className="w-full px-4 sm:px-5 py-2.5 sm:py-3.5 border-2 border-gray-200 text-gray-900 rounded-lg sm:rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed text-sm sm:text-base"
             placeholder="25"
           />
         </div>
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-            <Users className="w-4 h-4 text-orange-600" />
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2 flex items-center gap-1.5 sm:gap-2">
+            <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600" />
             Gender *
           </label>
           <select
@@ -174,7 +191,7 @@ export default function SignupPage() {
             onChange={handleChange}
             required
             disabled={loading}
-            className="w-full px-5 py-3.5 border-2 border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
+            className="w-full px-4 sm:px-5 py-2.5 sm:py-3.5 border-2 border-gray-200 text-gray-900 rounded-lg sm:rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all bg-white disabled:bg-gray-100 disabled:cursor-not-allowed text-sm sm:text-base"
           >
             <option value="">Select Gender</option>
             <option value="male">Male</option>
@@ -183,10 +200,10 @@ export default function SignupPage() {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-            <Ruler className="w-4 h-4 text-orange-600" />
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2 flex items-center gap-1.5 sm:gap-2">
+            <Ruler className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600" />
             Height (cm) *
           </label>
           <input
@@ -198,13 +215,13 @@ export default function SignupPage() {
             min="50"
             max="300"
             disabled={loading}
-            className="w-full px-5 py-3.5 border-2 border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+            className="w-full px-4 sm:px-5 py-2.5 sm:py-3.5 border-2 border-gray-200 text-gray-900 rounded-lg sm:rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed text-sm sm:text-base"
             placeholder="170"
           />
         </div>
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-            <Weight className="w-4 h-4 text-orange-600" />
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2 flex items-center gap-1.5 sm:gap-2">
+            <Weight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600" />
             Weight (kg) *
           </label>
           <input
@@ -216,7 +233,7 @@ export default function SignupPage() {
             min="20"
             max="500"
             disabled={loading}
-            className="w-full px-5 py-3.5 border-2 border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+            className="w-full px-4 sm:px-5 py-2.5 sm:py-3.5 border-2 border-gray-200 text-gray-900 rounded-lg sm:rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all disabled:bg-gray-100 disabled:cursor-not-allowed text-sm sm:text-base"
             placeholder="70"
           />
         </div>
@@ -225,10 +242,10 @@ export default function SignupPage() {
   );
 
   const renderStep3 = () => (
-    <div className="space-y-5 animate-fadeIn">
+    <div className="space-y-4 sm:space-y-5 animate-fadeIn">
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-          <Heart className="w-4 h-4 text-orange-600" />
+        <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2 flex items-center gap-1.5 sm:gap-2">
+          <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600" />
           Medical Condition (Optional)
         </label>
         <textarea
@@ -237,26 +254,26 @@ export default function SignupPage() {
           onChange={handleChange}
           rows={4}
           disabled={loading}
-          className="w-full px-5 py-3.5 border-2 border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="w-full px-4 sm:px-5 py-2.5 sm:py-3.5 border-2 border-gray-200 text-gray-900 rounded-lg sm:rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all resize-none disabled:bg-gray-100 disabled:cursor-not-allowed text-sm sm:text-base"
           placeholder="Any medical conditions, allergies, or dietary restrictions..."
         />
       </div>
-      <div className="bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-200 rounded-xl p-5">
-        <div className="flex items-start gap-3">
-          <Sparkles className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
-          <div className="text-sm text-gray-700">
-            <p className="font-bold mb-2 text-orange-900">What happens next?</p>
-            <ul className="space-y-1.5">
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-orange-600" />
+      <div className="bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-200 rounded-lg sm:rounded-xl p-4 sm:p-5">
+        <div className="flex items-start gap-2 sm:gap-3">
+          <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+          <div className="text-xs sm:text-sm text-gray-700">
+            <p className="font-bold mb-1.5 sm:mb-2 text-orange-900">What happens next?</p>
+            <ul className="space-y-1 sm:space-y-1.5">
+              <li className="flex items-start gap-1.5 sm:gap-2">
+                <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600 flex-shrink-0 mt-0.5" />
                 <span>AI calculates your personalized nutrition targets</span>
               </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-orange-600" />
+              <li className="flex items-start gap-1.5 sm:gap-2">
+                <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600 flex-shrink-0 mt-0.5" />
                 <span>Your BMI is automatically computed</span>
               </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-orange-600" />
+              <li className="flex items-start gap-1.5 sm:gap-2">
+                <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600 flex-shrink-0 mt-0.5" />
                 <span>
                   Custom daily goals for calories, protein, carbs & fat
                 </span>
@@ -269,33 +286,33 @@ export default function SignupPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 flex items-center justify-center p-4 pt-24 pb-16">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 flex items-center justify-center p-3 sm:p-4 md:p-6 py-6 sm:py-8">
       <div className="w-full max-w-2xl">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-xl">
+        <div className="text-center mb-4 sm:mb-6 px-2">
+          <div className="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shadow-xl">
               <Image
                 src="/plate-logo.png"
                 alt="DeshiPlate Logo"
                 width={64}
                 height={64}
-                className="object-contain"
+                className="object-contain w-12 h-12 sm:w-16 sm:h-16"
               />
             </div>
             <div className="text-left">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
+              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
                 DeshiPlate AI
               </h1>
-              <p className="text-sm text-gray-600 font-medium">
+              <p className="text-xs sm:text-sm text-gray-600 font-medium">
                 Smart Bengali Nutrition
               </p>
             </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-1.5 sm:mb-2 px-2">
             Create Your Account
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-sm sm:text-base text-gray-600 px-2">
             {loading
               ? "Calculating your personalized nutrition..."
               : "Join DeshiPlate AI and start your healthy journey"}
@@ -303,22 +320,22 @@ export default function SignupPage() {
         </div>
 
         {/* Progress Steps */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between max-w-md mx-auto">
+        <div className="mb-4 sm:mb-6 px-2">
+          <div className="flex items-center justify-center">
             {[1, 2, 3].map((s) => (
-              <div key={s} className="flex items-center flex-1">
-                <div className="flex flex-col items-center flex-1">
+              <div key={s} className="flex items-center">
+                <div className="flex flex-col items-center">
                   <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg transition-all shadow-lg ${
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center font-bold text-sm sm:text-base transition-all shadow-lg ${
                       step >= s
                         ? "bg-gradient-to-br from-orange-600 to-amber-600 text-white scale-110"
                         : "bg-white text-gray-400 border-2 border-gray-200"
                     }`}
                   >
-                    {step > s ? <CheckCircle className="w-6 h-6" /> : s}
+                    {step > s ? <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" /> : s}
                   </div>
                   <p
-                    className={`text-xs font-semibold mt-2 ${
+                    className={`text-[10px] sm:text-xs font-semibold mt-1 sm:mt-1.5 whitespace-nowrap ${
                       step >= s ? "text-orange-600" : "text-gray-400"
                     }`}
                   >
@@ -327,7 +344,7 @@ export default function SignupPage() {
                 </div>
                 {s < 3 && (
                   <div
-                    className={`flex-1 h-1 mx-2 rounded-full transition-all ${
+                    className={`w-16 sm:w-20 md:w-24 h-1 mx-2 sm:mx-3 rounded-full transition-all ${
                       step > s
                         ? "bg-gradient-to-r from-orange-600 to-amber-600"
                         : "bg-gray-200"
@@ -340,11 +357,11 @@ export default function SignupPage() {
         </div>
 
         {/* Form Card */}
-        <div className="bg-white rounded-2xl shadow-xl border-2 border-gray-100 p-8 md:p-10">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl border-2 border-gray-100 p-4 sm:p-6 md:p-8 mx-2">
           {error && (
-            <div className="mb-6 bg-red-50 border-2 border-red-200 text-red-700 px-5 py-4 rounded-xl flex items-center gap-3">
-              <AlertCircle className="w-5 h-5 flex-shrink-0" />
-              <span className="font-medium">{error}</span>
+            <div className="mb-4 sm:mb-5 bg-red-50 border-2 border-red-200 text-red-700 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl flex items-start sm:items-center gap-2 sm:gap-3">
+              <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5 sm:mt-0" />
+              <span className="font-medium text-xs sm:text-sm">{error}</span>
             </div>
           )}
 
@@ -353,13 +370,13 @@ export default function SignupPage() {
             {step === 2 && renderStep2()}
             {step === 3 && renderStep3()}
 
-            <div className="flex gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-5 sm:mt-6">
               {step > 1 && (
                 <button
                   type="button"
                   onClick={prevStep}
                   disabled={loading}
-                  className="flex-1 px-6 py-3.5 border-2 border-gray-200 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full sm:flex-1 px-5 sm:px-6 py-3 sm:py-3.5 border-2 border-gray-200 text-gray-700 font-semibold rounded-lg sm:rounded-xl hover:bg-gray-50 hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                 >
                   Back
                 </button>
@@ -370,25 +387,25 @@ export default function SignupPage() {
                   type="button"
                   onClick={nextStep}
                   disabled={loading}
-                  className="flex-1 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-semibold py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="w-full sm:flex-1 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-semibold py-3 sm:py-3.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-sm sm:text-base"
                 >
                   <span>Continue</span>
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               ) : (
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-semibold py-3.5 rounded-xl shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-[1.02] flex items-center justify-center gap-2 disabled:hover:scale-100"
+                  className="w-full sm:flex-1 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-semibold py-3 sm:py-3.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-[1.02] flex items-center justify-center gap-2 disabled:hover:scale-100 text-sm sm:text-base"
                 >
                   {loading ? (
                     <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
                       Creating Account...
                     </>
                   ) : (
                     <>
-                      <Sparkles className="w-5 h-5" />
+                      <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
                       Create Account
                     </>
                   )}
@@ -398,7 +415,7 @@ export default function SignupPage() {
           </form>
         </div>
 
-        <p className="text-center text-gray-600 mt-6">
+        <p className="text-center text-gray-600 mt-4 sm:mt-5 text-xs sm:text-sm px-2">
           Already have an account?{" "}
           <Link
             href="/signin"

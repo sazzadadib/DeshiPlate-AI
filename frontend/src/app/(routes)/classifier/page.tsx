@@ -14,33 +14,14 @@ interface PredictionResult {
 export default function FoodClassifier() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  
+  // ALL HOOKS MUST BE CALLED UNCONDITIONALLY - BEFORE ANY EARLY RETURNS
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [predictions, setPredictions] = useState<PredictionResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [topK, setTopK] = useState(5);
-
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/signin');
-    }
-  }, [status, router]);
-
-  if (status === 'loading') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-12 h-12 text-orange-600 animate-spin mx-auto mb-4" />
-          <p className="text-orange-700 font-semibold">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!session) {
-    return null;
-  }
 
   const handleImageSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -56,6 +37,48 @@ export default function FoodClassifier() {
     }
   }, []);
 
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+      setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setSelectedImage(event.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+      setPredictions([]);
+      setError(null);
+    }
+  }, []);
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+  }, []);
+
+  // Effect for redirecting unauthenticated users
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/signin');
+    }
+  }, [status, router]);
+
+  // NOW WE CAN DO CONDITIONAL RENDERING AFTER ALL HOOKS
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-orange-600 animate-spin mx-auto mb-4" />
+          <p className="text-orange-700 font-semibold">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return null;
+  }
+
   const classifyImage = async () => {
     if (!selectedFile) return;
 
@@ -64,13 +87,20 @@ export default function FoodClassifier() {
     setPredictions([]);
 
     try {
-      const { Client } = await import('@gradio/client');
-      
-      const client = await Client.connect('blackhacker/bangla-diet');
-      const result = await client.predict('/predict_image', {
-        image: selectedFile,
-        top_k: topK,
+      const formData = new FormData();
+      formData.append('image', selectedFile);
+      formData.append('top_k', String(topK));
+
+      const response = await fetch('/api/food/classify', {
+        method: 'POST',
+        body: formData,
       });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to classify image');
+      }
 
       const data = result.data;
       
@@ -102,25 +132,6 @@ export default function FoodClassifier() {
   const handleAnalyzeFood = (foodName: string) => {
     router.push(`/food-analysis?food=${encodeURIComponent(foodName)}`);
   };
-
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith('image/')) {
-      setSelectedFile(file);
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setSelectedImage(event.target?.result as string);
-      };
-      reader.readAsDataURL(file);
-      setPredictions([]);
-      setError(null);
-    }
-  }, []);
-
-  const handleDragOver = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">  

@@ -105,10 +105,10 @@ function ProfileClient() {
   if (status === 'loading' || loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-12 h-12 text-orange-600 animate-spin mx-auto mb-4" />
-          <p className="text-orange-700 font-semibold text-lg">Loading your profile...</p>
-          <p className="text-orange-600 text-sm mt-2">Getting your nutrition data</p>
+        <div className="text-center px-4">
+          <Loader2 className="w-10 h-10 sm:w-12 sm:h-12 text-orange-600 animate-spin mx-auto mb-3 sm:mb-4" />
+          <p className="text-orange-700 font-semibold text-base sm:text-lg">Loading your profile...</p>
+          <p className="text-orange-600 text-xs sm:text-sm mt-2">Getting your nutrition data</p>
         </div>
       </div>
     );
@@ -160,95 +160,95 @@ function ProfileClient() {
     (dailyNutrition.totalFat > userData.dailyFat * 0.8 && dailyNutrition.totalFat <= userData.dailyFat);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 py-8 px-4">
-      <div className="max-w-7xl mx-auto mt-12">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 py-6 sm:py-8 px-3 sm:px-4">
+      <div className="max-w-7xl mx-auto mt-8 sm:mt-10 md:mt-12">
         {/* Success Message */}
         {showSuccess && (
-          <div className="mb-6 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-2xl px-6 py-4 flex items-center gap-3 shadow-lg animate-pulse">
-            <div className="bg-green-500 text-white p-2 rounded-full">
-              <CheckCircle className="w-5 h-5" />
+          <div className="mb-4 sm:mb-6 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 flex items-center gap-2 sm:gap-3 shadow-lg animate-pulse">
+            <div className="bg-green-500 text-white p-1.5 sm:p-2 rounded-full">
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <p className="font-bold text-green-800 text-lg">Food Logged Successfully!</p>
-              <p className="text-green-700 text-sm">Your daily nutrition has been updated.</p>
+              <p className="font-bold text-green-800 text-sm sm:text-base md:text-lg">Food Logged Successfully!</p>
+              <p className="text-green-700 text-xs sm:text-sm">Your daily nutrition has been updated.</p>
             </div>
           </div>
         )}
 
         {/* Alert Messages */}
         {hasExceeded && (
-          <div className="mb-6 bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-300 rounded-2xl px-6 py-5 flex items-start gap-4 shadow-lg">
-            <div className="bg-red-500 text-white p-2 rounded-full flex-shrink-0">
-              <AlertTriangle className="w-6 h-6" />
+          <div className="mb-4 sm:mb-6 bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-300 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-4 sm:py-5 flex items-start gap-3 sm:gap-4 shadow-lg">
+            <div className="bg-red-500 text-white p-1.5 sm:p-2 rounded-full flex-shrink-0">
+              <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div>
-              <p className="font-bold text-red-800 text-xl mb-1">⚠️ Daily Limit Exceeded!</p>
-              <p className="text-red-700">You've exceeded your daily limit for one or more nutrients. Consider lighter meals for the rest of the day.</p>
+              <p className="font-bold text-red-800 text-base sm:text-lg md:text-xl mb-1">⚠️ Daily Limit Exceeded!</p>
+              <p className="text-red-700 text-xs sm:text-sm md:text-base">You've exceeded your daily limit for one or more nutrients. Consider lighter meals for the rest of the day.</p>
             </div>
           </div>
         )}
 
         {!hasExceeded && hasWarning && (
-          <div className="mb-6 bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300 rounded-2xl px-6 py-5 flex items-start gap-4 shadow-lg">
-            <div className="bg-orange-500 text-white p-2 rounded-full flex-shrink-0">
-              <AlertCircle className="w-6 h-6" />
+          <div className="mb-4 sm:mb-6 bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-4 sm:py-5 flex items-start gap-3 sm:gap-4 shadow-lg">
+            <div className="bg-orange-500 text-white p-1.5 sm:p-2 rounded-full flex-shrink-0">
+              <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div>
-              <p className="font-bold text-orange-800 text-xl mb-1">⚠️ Approaching Daily Limit</p>
-              <p className="text-orange-700">You're getting close to your daily limits. Be mindful of your next meals.</p>
+              <p className="font-bold text-orange-800 text-base sm:text-lg md:text-xl mb-1">⚠️ Approaching Daily Limit</p>
+              <p className="text-orange-700 text-xs sm:text-sm md:text-base">You're getting close to your daily limits. Be mindful of your next meals.</p>
             </div>
           </div>
         )}
 
         {/* Profile Header */}
-        <div className="bg-white rounded-3xl shadow-xl border-t-4 border-orange-500 p-8 mb-6">
-          <div className="flex items-center gap-6 mb-6">
-            <div className="bg-gradient-to-br from-orange-500 to-amber-600 text-white w-24 h-24 rounded-2xl flex items-center justify-center shadow-lg">
-              <User className="w-12 h-12" />
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-orange-500 p-4 sm:p-6 md:p-8 mb-4 sm:mb-6">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 mb-4 sm:mb-6">
+            <div className="bg-gradient-to-br from-orange-500 to-amber-600 text-white w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0">
+              <User className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
             </div>
-            <div className="flex-1">
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">{userData.name}</h1>
-              <p className="text-gray-600 text-lg mb-3">{userData.email}</p>
-              <div className="flex items-center gap-3 flex-wrap">
-                <span className="bg-gradient-to-r from-orange-100 to-amber-100 text-orange-700 px-4 py-2 rounded-full font-semibold text-sm border border-orange-200 shadow-sm">
+            <div className="flex-1 text-center sm:text-left w-full">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">{userData.name}</h1>
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-2 sm:mb-3 break-all">{userData.email}</p>
+              <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 flex-wrap">
+                <span className="bg-gradient-to-r from-orange-100 to-amber-100 text-orange-700 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-semibold text-xs sm:text-sm border border-orange-200 shadow-sm">
                   {userData.age} years old
                 </span>
-                <span className="bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 px-4 py-2 rounded-full font-semibold text-sm border border-blue-200 shadow-sm">
+                <span className="bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-semibold text-xs sm:text-sm border border-blue-200 shadow-sm">
                   {userData.gender}
                 </span>
-                <span className={`bg-gradient-to-r ${bmiCategory.bgColor} ${bmiCategory.color} px-4 py-2 rounded-full font-semibold text-sm border-2 ${bmiCategory.borderColor} shadow-sm`}>
+                <span className={`bg-gradient-to-r ${bmiCategory.bgColor} ${bmiCategory.color} px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-semibold text-xs sm:text-sm border-2 ${bmiCategory.borderColor} shadow-sm`}>
                   BMI: {userData.bmi.toFixed(1)} - {bmiCategory.text}
                 </span>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-orange-100 to-amber-100 px-6 py-5 rounded-2xl border-2 border-orange-300 shadow-md text-center">
-              <Trophy className="w-8 h-8 text-orange-600 mx-auto mb-2" />
-              <p className="text-sm text-orange-700 font-semibold mb-1">Today's Meals</p>
-              <p className="text-3xl font-bold text-orange-900">{dailyNutrition.mealsCount}</p>
+            <div className="bg-gradient-to-br from-orange-100 to-amber-100 px-4 sm:px-5 md:px-6 py-4 sm:py-5 rounded-xl sm:rounded-2xl border-2 border-orange-300 shadow-md text-center">
+              <Trophy className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-orange-600 mx-auto mb-1 sm:mb-2" />
+              <p className="text-xs sm:text-sm text-orange-700 font-semibold mb-0.5 sm:mb-1">Today's Meals</p>
+              <p className="text-2xl sm:text-3xl font-bold text-orange-900">{dailyNutrition.mealsCount}</p>
             </div>
           </div>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-4 sm:mb-6">
           {/* Physical Stats */}
-          <div className="bg-white rounded-3xl shadow-xl border-t-4 border-purple-500 p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-5 flex items-center gap-2">
-              <Activity className="w-6 h-6 text-purple-600" />
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-purple-500 p-4 sm:p-6">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-5 flex items-center gap-2">
+              <Activity className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
               Physical Stats
             </h2>
-            <div className="space-y-3">
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl border-2 border-purple-200 flex justify-between items-center shadow-sm">
-                <span className="text-gray-700 font-semibold">Height</span>
-                <span className="font-bold text-gray-900 text-lg">{userData.height} cm</span>
+            <div className="space-y-2 sm:space-y-3">
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 sm:p-4 rounded-xl border-2 border-purple-200 flex justify-between items-center shadow-sm">
+                <span className="text-gray-700 font-semibold text-sm sm:text-base">Height</span>
+                <span className="font-bold text-gray-900 text-base sm:text-lg">{userData.height} cm</span>
               </div>
-              <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-4 rounded-xl border-2 border-blue-200 flex justify-between items-center shadow-sm">
-                <span className="text-gray-700 font-semibold">Weight</span>
-                <span className="font-bold text-gray-900 text-lg">{userData.weight} kg</span>
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-3 sm:p-4 rounded-xl border-2 border-blue-200 flex justify-between items-center shadow-sm">
+                <span className="text-gray-700 font-semibold text-sm sm:text-base">Weight</span>
+                <span className="font-bold text-gray-900 text-base sm:text-lg">{userData.weight} kg</span>
               </div>
-              <div className={`bg-gradient-to-br ${bmiCategory.bgColor} p-4 rounded-xl border-2 ${bmiCategory.borderColor} flex justify-between items-center shadow-sm`}>
-                <span className="text-gray-700 font-semibold">BMI Status</span>
-                <span className={`font-bold text-lg ${bmiCategory.color}`}>
+              <div className={`bg-gradient-to-br ${bmiCategory.bgColor} p-3 sm:p-4 rounded-xl border-2 ${bmiCategory.borderColor} flex justify-between items-center shadow-sm`}>
+                <span className="text-gray-700 font-semibold text-sm sm:text-base">BMI Status</span>
+                <span className={`font-bold text-base sm:text-lg ${bmiCategory.color}`}>
                   {bmiCategory.text}
                 </span>
               </div>
@@ -256,59 +256,59 @@ function ProfileClient() {
           </div>
 
           {/* Daily Goals */}
-          <div className="bg-white rounded-3xl shadow-xl border-t-4 border-green-500 p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-5 flex items-center gap-2">
-              <Target className="w-6 h-6 text-green-600" />
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-green-500 p-4 sm:p-6">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-5 flex items-center gap-2">
+              <Target className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
               Daily Goals
             </h2>
-            <div className="space-y-3">
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-xl border-2 border-orange-200 flex justify-between items-center shadow-sm">
-                <div className="flex items-center gap-2">
-                  <Flame className="w-5 h-5 text-orange-600" />
-                  <span className="text-gray-700 font-semibold">Calories</span>
+            <div className="space-y-2 sm:space-y-3">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-3 sm:p-4 rounded-xl border-2 border-orange-200 flex justify-between items-center shadow-sm">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
+                  <span className="text-gray-700 font-semibold text-sm sm:text-base">Calories</span>
                 </div>
-                <span className="font-bold text-gray-900 text-lg">{userData.dailyCalories}</span>
+                <span className="font-bold text-gray-900 text-base sm:text-lg">{userData.dailyCalories}</span>
               </div>
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl border-2 border-purple-200 flex justify-between items-center shadow-sm">
-                <div className="flex items-center gap-2">
-                  <Drumstick className="w-5 h-5 text-purple-600" />
-                  <span className="text-gray-700 font-semibold">Protein</span>
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 sm:p-4 rounded-xl border-2 border-purple-200 flex justify-between items-center shadow-sm">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Drumstick className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
+                  <span className="text-gray-700 font-semibold text-sm sm:text-base">Protein</span>
                 </div>
-                <span className="font-bold text-gray-900 text-lg">{userData.dailyProtein}g</span>
+                <span className="font-bold text-gray-900 text-base sm:text-lg">{userData.dailyProtein}g</span>
               </div>
-              <div className="bg-gradient-to-br from-amber-50 to-yellow-100 p-4 rounded-xl border-2 border-amber-200 flex justify-between items-center shadow-sm">
-                <div className="flex items-center gap-2">
-                  <Wheat className="w-5 h-5 text-amber-600" />
-                  <span className="text-gray-700 font-semibold">Carbs</span>
+              <div className="bg-gradient-to-br from-amber-50 to-yellow-100 p-3 sm:p-4 rounded-xl border-2 border-amber-200 flex justify-between items-center shadow-sm">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Wheat className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
+                  <span className="text-gray-700 font-semibold text-sm sm:text-base">Carbs</span>
                 </div>
-                <span className="font-bold text-gray-900 text-lg">{userData.dailyCarbs}g</span>
+                <span className="font-bold text-gray-900 text-base sm:text-lg">{userData.dailyCarbs}g</span>
               </div>
-              <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-4 rounded-xl border-2 border-blue-200 flex justify-between items-center shadow-sm">
-                <div className="flex items-center gap-2">
-                  <Droplet className="w-5 h-5 text-blue-600" />
-                  <span className="text-gray-700 font-semibold">Fat</span>
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-3 sm:p-4 rounded-xl border-2 border-blue-200 flex justify-between items-center shadow-sm">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Droplet className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+                  <span className="text-gray-700 font-semibold text-sm sm:text-base">Fat</span>
                 </div>
-                <span className="font-bold text-gray-900 text-lg">{userData.dailyFat}g</span>
+                <span className="font-bold text-gray-900 text-base sm:text-lg">{userData.dailyFat}g</span>
               </div>
             </div>
           </div>
 
           {/* Medical Info */}
-          <div className="bg-white rounded-3xl shadow-xl border-t-4 border-pink-500 p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-5 flex items-center gap-2">
-              <Heart className="w-6 h-6 text-pink-600" />
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-pink-500 p-4 sm:p-6 sm:col-span-2 lg:col-span-1">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-5 flex items-center gap-2">
+              <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600" />
               Medical Info
             </h2>
-            <div className="bg-gradient-to-br from-pink-50 to-rose-100 p-6 rounded-2xl border-2 border-pink-200 min-h-[180px] flex items-center justify-center shadow-sm">
+            <div className="bg-gradient-to-br from-pink-50 to-rose-100 p-4 sm:p-6 rounded-xl sm:rounded-2xl border-2 border-pink-200 min-h-[120px] sm:min-h-[150px] md:min-h-[180px] flex items-center justify-center shadow-sm">
               {userData.medicalCondition ? (
                 <div className="text-center">
-                  <AlertCircle className="w-12 h-12 text-pink-600 mx-auto mb-3" />
-                  <p className="text-gray-800 font-semibold text-lg">{userData.medicalCondition}</p>
+                  <AlertCircle className="w-10 h-10 sm:w-12 sm:h-12 text-pink-600 mx-auto mb-2 sm:mb-3" />
+                  <p className="text-gray-800 font-semibold text-sm sm:text-base md:text-lg">{userData.medicalCondition}</p>
                 </div>
               ) : (
                 <div className="text-center">
-                  <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-3" />
-                  <p className="text-gray-600 font-medium">No medical conditions reported</p>
+                  <CheckCircle className="w-10 h-10 sm:w-12 sm:h-12 text-green-600 mx-auto mb-2 sm:mb-3" />
+                  <p className="text-gray-600 font-medium text-sm sm:text-base">No medical conditions reported</p>
                 </div>
               )}
             </div>
@@ -316,32 +316,32 @@ function ProfileClient() {
         </div>
 
         {/* Today's Progress */}
-        <div className="bg-white rounded-3xl shadow-xl border-t-4 border-blue-500 p-8 mb-6">
-          <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
-            <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <PieChart className="w-8 h-8 text-blue-600" />
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-blue-500 p-4 sm:p-6 md:p-8 mb-4 sm:mb-6">
+          <div className="flex items-center justify-between mb-4 sm:mb-6 flex-wrap gap-3 sm:gap-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 flex items-center gap-2 sm:gap-3">
+              <PieChart className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-blue-600" />
               Today's Nutrition Progress
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6">
             {/* Calories */}
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-2xl border-2 border-orange-300 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="bg-orange-500 text-white p-3 rounded-xl shadow-md">
-                  <Flame className="w-6 h-6" />
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border-2 border-orange-300 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="bg-orange-500 text-white p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md">
+                  <Flame className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <p className="text-sm text-orange-700 font-semibold">Calories</p>
-                  <p className="text-xs text-orange-600">Daily Target</p>
+                  <p className="text-xs sm:text-sm text-orange-700 font-semibold">Calories</p>
+                  <p className="text-[10px] sm:text-xs text-orange-600">Daily Target</p>
                 </div>
               </div>
-              <p className="text-4xl font-bold text-orange-900 mb-2">
+              <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-900 mb-1 sm:mb-2">
                 {dailyNutrition.totalCalories.toFixed(0)}
               </p>
-              <p className="text-sm text-gray-700 mb-4">of {userData.dailyCalories} kcal</p>
+              <p className="text-xs sm:text-sm text-gray-700 mb-3 sm:mb-4">of {userData.dailyCalories} kcal</p>
               
-              <div className="bg-white/50 h-4 rounded-full overflow-hidden mb-3 shadow-inner">
+              <div className="bg-white/50 h-3 sm:h-4 rounded-full overflow-hidden mb-2 sm:mb-3 shadow-inner">
                 <div
                   className={`h-full rounded-full transition-all duration-500 bg-gradient-to-r ${getProgressColor(
                     parseFloat(calculatePercentage(dailyNutrition.totalCalories, userData.dailyCalories))
@@ -353,32 +353,32 @@ function ProfileClient() {
               </div>
               
               <div className="flex items-center justify-between">
-                <span className={`font-bold text-lg ${getStatusColor(parseFloat(calculatePercentage(dailyNutrition.totalCalories, userData.dailyCalories)))}`}>
+                <span className={`font-bold text-sm sm:text-base md:text-lg ${getStatusColor(parseFloat(calculatePercentage(dailyNutrition.totalCalories, userData.dailyCalories)))}`}>
                   {calculatePercentage(dailyNutrition.totalCalories, userData.dailyCalories)}%
                 </span>
-                <span className="text-gray-700 font-semibold text-sm">
+                <span className="text-gray-700 font-semibold text-xs sm:text-sm">
                   {(userData.dailyCalories - dailyNutrition.totalCalories).toFixed(0)} left
                 </span>
               </div>
             </div>
 
             {/* Protein */}
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-2xl border-2 border-purple-300 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="bg-purple-500 text-white p-3 rounded-xl shadow-md">
-                  <Drumstick className="w-6 h-6" />
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border-2 border-purple-300 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="bg-purple-500 text-white p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md">
+                  <Drumstick className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <p className="text-sm text-purple-700 font-semibold">Protein</p>
-                  <p className="text-xs text-purple-600">Daily Target</p>
+                  <p className="text-xs sm:text-sm text-purple-700 font-semibold">Protein</p>
+                  <p className="text-[10px] sm:text-xs text-purple-600">Daily Target</p>
                 </div>
               </div>
-              <p className="text-4xl font-bold text-purple-900 mb-2">
+              <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-900 mb-1 sm:mb-2">
                 {dailyNutrition.totalProtein.toFixed(0)}g
               </p>
-              <p className="text-sm text-gray-700 mb-4">of {userData.dailyProtein}g</p>
+              <p className="text-xs sm:text-sm text-gray-700 mb-3 sm:mb-4">of {userData.dailyProtein}g</p>
               
-              <div className="bg-white/50 h-4 rounded-full overflow-hidden mb-3 shadow-inner">
+              <div className="bg-white/50 h-3 sm:h-4 rounded-full overflow-hidden mb-2 sm:mb-3 shadow-inner">
                 <div
                   className={`h-full rounded-full transition-all duration-500 bg-gradient-to-r ${getProgressColor(
                     parseFloat(calculatePercentage(dailyNutrition.totalProtein, userData.dailyProtein))
@@ -390,32 +390,32 @@ function ProfileClient() {
               </div>
               
               <div className="flex items-center justify-between">
-                <span className={`font-bold text-lg ${getStatusColor(parseFloat(calculatePercentage(dailyNutrition.totalProtein, userData.dailyProtein)))}`}>
+                <span className={`font-bold text-sm sm:text-base md:text-lg ${getStatusColor(parseFloat(calculatePercentage(dailyNutrition.totalProtein, userData.dailyProtein)))}`}>
                   {calculatePercentage(dailyNutrition.totalProtein, userData.dailyProtein)}%
                 </span>
-                <span className="text-gray-700 font-semibold text-sm">
+                <span className="text-gray-700 font-semibold text-xs sm:text-sm">
                   {(userData.dailyProtein - dailyNutrition.totalProtein).toFixed(1)}g left
                 </span>
               </div>
             </div>
 
             {/* Carbs */}
-            <div className="bg-gradient-to-br from-amber-50 to-yellow-100 p-6 rounded-2xl border-2 border-amber-300 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="bg-amber-500 text-white p-3 rounded-xl shadow-md">
-                  <Wheat className="w-6 h-6" />
+            <div className="bg-gradient-to-br from-amber-50 to-yellow-100 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border-2 border-amber-300 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="bg-amber-500 text-white p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md">
+                  <Wheat className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <p className="text-sm text-amber-700 font-semibold">Carbs</p>
-                  <p className="text-xs text-amber-600">Daily Target</p>
+                  <p className="text-xs sm:text-sm text-amber-700 font-semibold">Carbs</p>
+                  <p className="text-[10px] sm:text-xs text-amber-600">Daily Target</p>
                 </div>
               </div>
-              <p className="text-4xl font-bold text-amber-900 mb-2">
+              <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-900 mb-1 sm:mb-2">
                 {dailyNutrition.totalCarbs.toFixed(0)}g
               </p>
-              <p className="text-sm text-gray-700 mb-4">of {userData.dailyCarbs}g</p>
+              <p className="text-xs sm:text-sm text-gray-700 mb-3 sm:mb-4">of {userData.dailyCarbs}g</p>
               
-              <div className="bg-white/50 h-4 rounded-full overflow-hidden mb-3 shadow-inner">
+              <div className="bg-white/50 h-3 sm:h-4 rounded-full overflow-hidden mb-2 sm:mb-3 shadow-inner">
                 <div
                   className={`h-full rounded-full transition-all duration-500 bg-gradient-to-r ${getProgressColor(
                     parseFloat(calculatePercentage(dailyNutrition.totalCarbs, userData.dailyCarbs))
@@ -427,32 +427,32 @@ function ProfileClient() {
               </div>
               
               <div className="flex items-center justify-between">
-                <span className={`font-bold text-lg ${getStatusColor(parseFloat(calculatePercentage(dailyNutrition.totalCarbs, userData.dailyCarbs)))}`}>
+                <span className={`font-bold text-sm sm:text-base md:text-lg ${getStatusColor(parseFloat(calculatePercentage(dailyNutrition.totalCarbs, userData.dailyCarbs)))}`}>
                   {calculatePercentage(dailyNutrition.totalCarbs, userData.dailyCarbs)}%
                 </span>
-                <span className="text-gray-700 font-semibold text-sm">
+                <span className="text-gray-700 font-semibold text-xs sm:text-sm">
                   {(userData.dailyCarbs - dailyNutrition.totalCarbs).toFixed(1)}g left
                 </span>
               </div>
             </div>
 
             {/* Fat */}
-            <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-6 rounded-2xl border-2 border-blue-300 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="bg-blue-500 text-white p-3 rounded-xl shadow-md">
-                  <Droplet className="w-6 h-6" />
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border-2 border-blue-300 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="bg-blue-500 text-white p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md">
+                  <Droplet className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <p className="text-sm text-blue-700 font-semibold">Fat</p>
-                  <p className="text-xs text-blue-600">Daily Target</p>
+                  <p className="text-xs sm:text-sm text-blue-700 font-semibold">Fat</p>
+                  <p className="text-[10px] sm:text-xs text-blue-600">Daily Target</p>
                 </div>
               </div>
-              <p className="text-4xl font-bold text-blue-900 mb-2">
+              <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 mb-1 sm:mb-2">
                 {dailyNutrition.totalFat.toFixed(0)}g
               </p>
-              <p className="text-sm text-gray-700 mb-4">of {userData.dailyFat}g</p>
+              <p className="text-xs sm:text-sm text-gray-700 mb-3 sm:mb-4">of {userData.dailyFat}g</p>
               
-              <div className="bg-white/50 h-4 rounded-full overflow-hidden mb-3 shadow-inner">
+              <div className="bg-white/50 h-3 sm:h-4 rounded-full overflow-hidden mb-2 sm:mb-3 shadow-inner">
                 <div
                   className={`h-full rounded-full transition-all duration-500 bg-gradient-to-r ${getProgressColor(
                     parseFloat(calculatePercentage(dailyNutrition.totalFat, userData.dailyFat))
@@ -464,10 +464,10 @@ function ProfileClient() {
               </div>
               
               <div className="flex items-center justify-between">
-                <span className={`font-bold text-lg ${getStatusColor(parseFloat(calculatePercentage(dailyNutrition.totalFat, userData.dailyFat)))}`}>
+                <span className={`font-bold text-sm sm:text-base md:text-lg ${getStatusColor(parseFloat(calculatePercentage(dailyNutrition.totalFat, userData.dailyFat)))}`}>
                   {calculatePercentage(dailyNutrition.totalFat, userData.dailyFat)}%
                 </span>
-                <span className="text-gray-700 font-semibold text-sm">
+                <span className="text-gray-700 font-semibold text-xs sm:text-sm">
                   {(userData.dailyFat - dailyNutrition.totalFat).toFixed(1)}g left
                 </span>
               </div>
@@ -475,25 +475,25 @@ function ProfileClient() {
           </div>
 
           {/* Info Box */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-5 rounded-2xl border-2 border-blue-200 flex items-start gap-3 shadow-sm">
-            <Info className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" />
-            <div className="text-sm text-blue-900">
-              <p className="font-bold mb-2 text-base">Understanding Your Progress:</p>
-              <div className="grid md:grid-cols-2 gap-2 text-blue-800">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-5 rounded-xl sm:rounded-2xl border-2 border-blue-200 flex items-start gap-2 sm:gap-3 shadow-sm">
+            <Info className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 flex-shrink-0 mt-0.5" />
+            <div className="text-xs sm:text-sm text-blue-900">
+              <p className="font-bold mb-1 sm:mb-2 text-sm sm:text-base">Understanding Your Progress:</p>
+              <div className="grid sm:grid-cols-2 gap-1.5 sm:gap-2 text-blue-800">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500 flex-shrink-0"></div>
                   <span><strong>Green (0-50%):</strong> Excellent progress</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500 flex-shrink-0"></div>
                   <span><strong>Yellow (50-80%):</strong> Good progress</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500 flex-shrink-0"></div>
                   <span><strong>Orange (80-100%):</strong> Approaching limit</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500 flex-shrink-0"></div>
                   <span><strong>Red (100%+):</strong> Limit exceeded</span>
                 </div>
               </div>
@@ -502,43 +502,43 @@ function ProfileClient() {
         </div>
 
         {/* Today's Meals */}
-        <div className="bg-white rounded-3xl shadow-xl border-t-4 border-teal-500 p-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-            <ChefHat className="w-8 h-8 text-teal-600" />
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-teal-500 p-4 sm:p-6 md:p-8">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+            <ChefHat className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-teal-600" />
             Today's Meals History
           </h2>
 
           {foodLogs.length === 0 ? (
-            <div className="text-center py-16">
-              <div className="bg-gradient-to-br from-orange-100 to-amber-100 w-24 h-24 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <Drumstick className="w-12 h-12 text-orange-600" />
+            <div className="text-center py-12 sm:py-16">
+              <div className="bg-gradient-to-br from-orange-100 to-amber-100 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
+                <Drumstick className="w-10 h-10 sm:w-12 sm:h-12 text-orange-600" />
               </div>
-              <p className="text-gray-600 font-semibold text-xl mb-3">No meals logged today</p>
-              <p className="text-gray-500 mb-6">Start tracking your nutrition by logging your first meal</p>
+              <p className="text-gray-600 font-semibold text-lg sm:text-xl mb-2 sm:mb-3">No meals logged today</p>
+              <p className="text-gray-500 mb-4 sm:mb-6 text-sm sm:text-base">Start tracking your nutrition by logging your first meal</p>
               <button
                 onClick={() => router.push('/classifier')}
-                className="bg-gradient-to-r from-orange-600 to-amber-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2 mx-auto"
+                className="bg-gradient-to-r from-orange-600 to-amber-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base md:text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2 mx-auto"
               >
-                <ChefHat className="w-6 h-6" />
+                <ChefHat className="w-5 h-5 sm:w-6 sm:h-6" />
                 Log Your First Meal
               </button>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {foodLogs.map((log) => (
                 <div
                   key={log.id}
-                  className="bg-gradient-to-r from-orange-50 via-amber-50 to-yellow-50 p-6 rounded-2xl border-2 border-orange-200 hover:shadow-lg transition-all"
+                  className="bg-gradient-to-r from-orange-50 via-amber-50 to-yellow-50 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border-2 border-orange-200 hover:shadow-lg transition-all"
                 >
-                  <div className="flex items-start justify-between mb-4 flex-wrap gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-gradient-to-br from-orange-500 to-amber-600 text-white p-3 rounded-xl shadow-md">
-                        <Utensils className="w-6 h-6" />
+                  <div className="flex items-start justify-between mb-3 sm:mb-4 flex-wrap gap-2 sm:gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="bg-gradient-to-br from-orange-500 to-amber-600 text-white p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md">
+                        <Utensils className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-gray-900">{log.foodName}</h3>
-                        <p className="text-sm text-gray-600 flex items-center gap-1 mt-1">
-                          <Clock className="w-4 h-4" />
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">{log.foodName}</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 flex items-center gap-1 mt-0.5 sm:mt-1">
+                          <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                           {new Date(log.consumedAt).toLocaleTimeString('en-US', {
                             hour: '2-digit',
                             minute: '2-digit',
@@ -547,7 +547,7 @@ function ProfileClient() {
                       </div>
                     </div>
                     <span
-                      className={`px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 shadow-sm ${
+                      className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5 sm:gap-2 shadow-sm ${
                         log.recommendation === 'recommended'
                           ? 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 border-2 border-green-300'
                           : log.recommendation === 'moderate'
@@ -557,54 +557,54 @@ function ProfileClient() {
                     >
                       {log.recommendation === 'recommended' ? (
                         <>
-                          <CheckCircle className="w-4 h-4" />
+                          <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
                           Recommended
                         </>
                       ) : log.recommendation === 'moderate' ? (
                         <>
-                          <AlertCircle className="w-4 h-4" />
+                          <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4" />
                           Moderate
                         </>
                       ) : (
                         <>
-                          <AlertTriangle className="w-4 h-4" />
+                          <AlertTriangle className="w-3 h-3 sm:w-4 sm:h-4" />
                           Not Recommended
                         </>
                       )}
                     </span>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="bg-white p-4 rounded-xl border-2 border-orange-200 text-center shadow-sm hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-center gap-2 mb-2">
-                        <Flame className="w-5 h-5 text-orange-600" />
-                        <p className="text-xs text-gray-600 font-semibold">Calories</p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                    <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl border-2 border-orange-200 text-center shadow-sm hover:shadow-md transition-shadow">
+                      <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-1 sm:mb-2">
+                        <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
+                        <p className="text-[10px] sm:text-xs text-gray-600 font-semibold">Calories</p>
                       </div>
-                      <p className="font-bold text-gray-900 text-2xl">{log.calories}</p>
-                      <p className="text-xs text-orange-600 font-medium mt-1">kcal</p>
+                      <p className="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl">{log.calories}</p>
+                      <p className="text-[10px] sm:text-xs text-orange-600 font-medium mt-0.5 sm:mt-1">kcal</p>
                     </div>
-                    <div className="bg-white p-4 rounded-xl border-2 border-purple-200 text-center shadow-sm hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-center gap-2 mb-2">
-                        <Drumstick className="w-5 h-5 text-purple-600" />
-                        <p className="text-xs text-gray-600 font-semibold">Protein</p>
+                    <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl border-2 border-purple-200 text-center shadow-sm hover:shadow-md transition-shadow">
+                      <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-1 sm:mb-2">
+                        <Drumstick className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
+                        <p className="text-[10px] sm:text-xs text-gray-600 font-semibold">Protein</p>
                       </div>
-                      <p className="font-bold text-gray-900 text-2xl">{log.protein}g</p>
-                      <p className="text-xs text-purple-600 font-medium mt-1">grams</p>
+                      <p className="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl">{log.protein}g</p>
+                      <p className="text-[10px] sm:text-xs text-purple-600 font-medium mt-0.5 sm:mt-1">grams</p>
                     </div>
-                    <div className="bg-white p-4 rounded-xl border-2 border-amber-200 text-center shadow-sm hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-center gap-2 mb-2">
-                        <Wheat className="w-5 h-5 text-amber-600" />
-                        <p className="text-xs text-gray-600 font-semibold">Carbs</p>
+                    <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl border-2 border-amber-200 text-center shadow-sm hover:shadow-md transition-shadow">
+                      <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-1 sm:mb-2">
+                        <Wheat className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
+                        <p className="text-[10px] sm:text-xs text-gray-600 font-semibold">Carbs</p>
                       </div>
-                      <p className="font-bold text-gray-900 text-2xl">{log.carbs}g</p>
-                      <p className="text-xs text-amber-600 font-medium mt-1">grams</p>
+                      <p className="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl">{log.carbs}g</p>
+                      <p className="text-[10px] sm:text-xs text-amber-600 font-medium mt-0.5 sm:mt-1">grams</p>
                     </div>
-                    <div className="bg-white p-4 rounded-xl border-2 border-blue-200 text-center shadow-sm hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-center gap-2 mb-2">
-                        <Droplet className="w-5 h-5 text-blue-600" />
-                        <p className="text-xs text-gray-600 font-semibold">Fat</p>
+                    <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl border-2 border-blue-200 text-center shadow-sm hover:shadow-md transition-shadow">
+                      <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-1 sm:mb-2">
+                        <Droplet className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+                        <p className="text-[10px] sm:text-xs text-gray-600 font-semibold">Fat</p>
                       </div>
-                      <p className="font-bold text-gray-900 text-2xl">{log.fat}g</p>
-                      <p className="text-xs text-blue-600 font-medium mt-1">grams</p>
+                      <p className="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl">{log.fat}g</p>
+                      <p className="text-[10px] sm:text-xs text-blue-600 font-medium mt-0.5 sm:mt-1">grams</p>
                     </div>
                   </div>
                 </div>
@@ -615,12 +615,12 @@ function ProfileClient() {
 
         {/* Action Button */}
         {foodLogs.length > 0 && (
-          <div className="mt-6 text-center">
+          <div className="mt-4 sm:mt-6 text-center">
             <button
               onClick={() => router.push('/classifier')}
-              className="bg-gradient-to-r from-orange-600 to-amber-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center gap-3"
+              className="bg-gradient-to-r from-orange-600 to-amber-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base md:text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center gap-2 sm:gap-3"
             >
-              <ChefHat className="w-6 h-6" />
+              <ChefHat className="w-5 h-5 sm:w-6 sm:h-6" />
               Log Another Meal
             </button>
           </div>
@@ -635,10 +635,10 @@ export default function ProfilePage() {
     <Suspense
       fallback={
         <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 flex items-center justify-center">
-          <div className="text-center">
-            <Loader2 className="w-12 h-12 text-orange-600 animate-spin mx-auto mb-4" />
-            <p className="text-orange-700 font-semibold text-lg">Loading your profile...</p>
-            <p className="text-orange-600 text-sm mt-2">Getting your nutrition data</p>
+          <div className="text-center px-4">
+            <Loader2 className="w-10 h-10 sm:w-12 sm:h-12 text-orange-600 animate-spin mx-auto mb-3 sm:mb-4" />
+            <p className="text-orange-700 font-semibold text-base sm:text-lg">Loading your profile...</p>
+            <p className="text-orange-600 text-xs sm:text-sm mt-2">Getting your nutrition data</p>
           </div>
         </div>
       }
